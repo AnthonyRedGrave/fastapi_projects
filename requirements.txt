@@ -11,6 +11,7 @@ email-validator==1.2.1
 fastapi==0.78.0
 FastAPI-SQLAlchemy==0.2.1
 h11==0.13.0
+httptools==0.4.0
 idna==3.3
 jose==1.0.0
 Mako==1.2.1
@@ -23,6 +24,7 @@ pycparser==2.21
 pydantic==1.9.1
 python-dotenv==0.20.0
 python-jose==3.3.0
+PyYAML==6.0
 rsa==4.8
 six==1.16.0
 sniffio==1.2.0
@@ -30,3 +32,6 @@ SQLAlchemy==1.4.38
 starlette==0.19.1
 typing_extensions==4.3.0
 uvicorn==0.18.2
+uvloop==0.16.0
+watchfiles==0.15.0
+websockets==10.3

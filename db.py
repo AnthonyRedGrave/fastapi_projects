@@ -28,3 +28,13 @@ class Chat(ormar.Model):
 
     id: int = ormar.Integer(primary_key = True)
     users: Optional[List[User]] = ormar.ManyToMany(User)
+
+
+class Message(ormar.Model):
+    class Meta(BaseMeta):
+        tablename = "messages"
+
+    id: int = ormar.Integer(primary_key = True)
+    chat: Optional[Chat] = ormar.ForeignKey(Chat)
+    text: str = ormar.String(max_length=255)
+    user: User = ormar.ForeignKey(User)
