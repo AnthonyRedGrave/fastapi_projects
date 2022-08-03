@@ -1,0 +1,22 @@
+version: "3.9"
+
+services: 
+    microservices:
+        build:
+            context: ./microservices
+        image: few-threads-microservice
+        container_name: few-threads-microservice
+        restart: unless-stopped
+        ports:
+            - "8080:8080"
+        command: gunicorn --reload --workers=3 -b 0.0.0.0:8080 -k uvicorn.workers.UvicornWorker app:app
+    
+    redis:
+        image: redis
+        container_name: redis
+        restart: unless-stopped
+        volumes:
+            - ./redis/data:/data
+        ports:
+            - "6379:6379"
+
