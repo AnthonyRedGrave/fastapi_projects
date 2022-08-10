@@ -13,20 +13,29 @@ services:
             - CELERY_RESULT_BACKEND=redis://redis:6379/0
             - GUNICORN_CMD_ARGS="--reload"
         restart: always
-        depends_on: 
-            - redis
-
-    worker:
-        build: .
-        command: celery -A worker.celery worker --loglevel=info
+        # depends_on: 
+        #     - redis
+    db:
+        image: postgres
+        ports: 
+            - 5433:5432
         volumes:
-            - .:/code
+            - ./data/db:/var/lib/postgresql/data
         environment:
-            - CELERY_BROKER_URL=redis://redis:6379/0
-            - CELERY_RESULT_BACKEND=redis://redis:6379/0
-        depends_on:
-            - web
-            - redis
+            - POSTGRES_DB=weather_app
+            - POSTGRES_USER=weather_app
+            - POSTGRES_PASSWORD=weather_app
+    # worker:
+    #     build: .
+    #     command: celery -A worker.celery worker --loglevel=info
+    #     volumes:
+    #         - .:/code
+    #     environment:
+    #         - CELERY_BROKER_URL=redis://redis:6379/0
+    #         - CELERY_RESULT_BACKEND=redis://redis:6379/0
+    #     depends_on:
+    #         - web
+    #         - redis
 
-    redis:
-        image: redis:6-alpine
+    # redis:
+    #     image: redis:6-alpine

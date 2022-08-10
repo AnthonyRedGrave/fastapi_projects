@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from worker import create_task
+# from worker import create_task
 
 
 app = FastAPI()
@@ -14,7 +14,7 @@ app = FastAPI()
 
 @app.get('/')
 async def main():
-    create_task(1)
+    # create_task(1)
     return {'1':'2'}
 
 
